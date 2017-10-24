@@ -39,7 +39,7 @@ if [ 1 -eq 0 ]; then    # This is never true, thus it acts as block comments ;)
 ################################################################################
 ### One liner - Grab the latest version and execute! ###########################
 ################################################################################
-wget -qO kali-rolling.sh https://raw.github.com/g0tmi1k/os-scripts/master/kali-rolling.sh \
+wget -qO kali-rolling.sh https://raw.github.com/ben0/os-scripts/master/kali-rolling.sh \
   && bash kali-rolling.sh -burp -keyboard gb -timezone "Europe/London"
 ################################################################################
 fi
