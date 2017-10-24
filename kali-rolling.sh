@@ -3636,10 +3636,7 @@ grep -q '^## ssh' "${file}" 2>/dev/null \
 #--- Apply new alias
 source "${file}" || source ~/.zshrc
 
-
-
 ##### Custom insert point
-
 ##### Install GDB Peda (GIT)
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}gdb peda${RESET} (GIT)"
 apt -y -qq install git \
@@ -3648,6 +3645,23 @@ git clone -q -b master https://github.com/longld/peda.git ~/peda \
   || echo -e ' '${RED}'[!] Issue when git cloning'${RESET} 1>&2
 echo "source ~/peda/peda.py" >> ~/.gdbinit
 git pull -q
+
+##### Install THC Hydra - DEVEL (GIT)
+(( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}hydra${RESET} (GIT)"
+apt -y -qq install git \
+  || echo -e ' '${RED}'[!] Issue with apt install'${RESET} 1>&2
+git clone -q -b master git clone https://github.com/vanhauser-thc/thc-hydra /opt/hydra-git/ \
+  || echo -e ' '${RED}'[!] Issue when git cloning'${RESET} 1>&2
+pushd /opt/hydra-git/ >/dev/null
+git pull -q
+make -s clean
+./configure --prefix=/usr --sysconfdir=/etc >/dev/null
+make -s 2>/dev/null && make -s install   # bad, but it gives errors which might be confusing (still builds)
+popd >/dev/null
+#--- Add to path (with a 'better' name)
+mkdir -p /usr/local/bin/
+ln -sf /usr/bin/hydra /usr/local/bin/hydra
+
 
 ##### Clean the system
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) ${GREEN}Cleaning${RESET} the system"
