@@ -3640,7 +3640,14 @@ source "${file}" || source ~/.zshrc
 
 ##### Custom insert point
 
-
+##### Install GDB Peda (GIT)
+(( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}gdb peda${RESET} (GIT)"
+apt -y -qq install git \
+  || echo -e ' '${RED}'[!] Issue with apt install'${RESET} 1>&2
+git clone -q -b master https://github.com/longld/peda.git ~/peda \
+  || echo -e ' '${RED}'[!] Issue when git cloning'${RESET} 1>&2
+echo "source ~/peda/peda.py" >> ~/.gdbinit
+git pull -q
 
 ##### Clean the system
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) ${GREEN}Cleaning${RESET} the system"
