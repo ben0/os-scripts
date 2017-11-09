@@ -3662,9 +3662,14 @@ popd >/dev/null
 mkdir -p /usr/local/bin/
 ln -sf /usr/bin/hydra /usr/local/bin/hydra
 
-# Aliases
+# Aliases and functions
+# Dump dump shellcode from binary
 function dumpshellcode { objdump -d ./"$1"|grep '[0-9a-f]:'|grep -v 'file'|cut -f2 -d:|cut -f1-6 -d' '|tr -s ' '|tr '\t' ' '|sed 's/ $//g'|sed 's/ /\\x/g'|paste -d '' -s |sed 's/^/"/'|sed 's/$/"/g'; }
 export -f dumpshellcode
+
+# Python web servers
+alias pyweb3 = python -m http.server
+alias pyweb2 = python -m SimpleHTTPServer
 
 ##### Clean the system
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) ${GREEN}Cleaning${RESET} the system"
