@@ -3679,6 +3679,9 @@ alias v="xclip -o"
 alias pyweb3="python -m http.server"
 alias pyweb2="python -m SimpleHTTPServer"
 
+# Print punctuation chars
+alias punc='python -c "import string; print(string.punctuation)"'
+
 ##### Clean the system
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) ${GREEN}Cleaning${RESET} the system"
 #--- Clean package manager
