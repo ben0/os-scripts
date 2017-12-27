@@ -3682,6 +3682,9 @@ alias pyweb2="python -m SimpleHTTPServer"
 # Print punctuation chars
 alias punc='python -c "import string; print(string.punctuation)"'
 
+# Update/upgrade kali
+alias doit ='apt-get update && apt-get dist-upgrade -y && msfupdate && nmap --script-updatedb
+
 ##### Clean the system
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) ${GREEN}Cleaning${RESET} the system"
 #--- Clean package manager
