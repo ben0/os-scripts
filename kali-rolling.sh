@@ -3650,7 +3650,7 @@ git pull -q
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}hydra${RESET} (GIT)"
 apt -y -qq install git \
   || echo -e ' '${RED}'[!] Issue with apt install'${RESET} 1>&2
-git clone -q -b master git clone https://github.com/vanhauser-thc/thc-hydra /opt/hydra-git/ \
+git clone -q -b master https://github.com/vanhauser-thc/thc-hydra /opt/hydra-git/ \
   || echo -e ' '${RED}'[!] Issue when git cloning'${RESET} 1>&2
 pushd /opt/hydra-git/ >/dev/null
 git pull -q
