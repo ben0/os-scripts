@@ -3667,23 +3667,33 @@ ln -sf /usr/bin/hydra /usr/local/bin/hydra
 apt -y -qq install xclip \
   || echo -e ' '${RED}'[!] Issue with apt install'${RESET} 1>&2
 
-# Aliases and functions
+## Functions
 # Dump dump shellcode from binary
 function dumpshellcode { objdump -d ./"$1"|grep '[0-9a-f]:'|grep -v 'file'|cut -f2 -d:|cut -f1-6 -d' '|tr -s ' '|tr '\t' ' '|sed 's/ $//g'|sed 's/ /\\x/g'|paste -d '' -s |sed 's/^/"/'|sed 's/$/"/g' | xclip; }
 export -f dumpshellcode
 
-# XClip paste with 'v'
-alias v="xclip -o"
+## More Aliases
+#--- Setup aliases
+file=~/.bash_aliases
 
-# Python web servers
-alias pyweb3="python -m http.server"
-alias pyweb2="python -m SimpleHTTPServer"
+# XClip paste with 'v'
+echo -e "\n# Alias for XClip paste" >> ${file}
+echo -e "alias v='xclip -o'" >> ${file}
 
 # Print punctuation chars
-alias punc='python -c "import string; print(string.punctuation)"'
+echo -e "\n# Alias for python stuff" >> ${file}
+echo -e "alias pyprintpunc='python -c \"import string; print(string.punctuation)\"'" >> ${file}
+echo -e "alias pyprintable='python -c \"import string; print(string.printable)\"'" >> ${file}
+echo -e "alias pyprintletters='python -c \"import string; print(string.letters)\"'" >> ${file}
+echo -e "alias pyweb3='python3 -m http.server'" >> ${file}
+echo -e "alias pyweb2='python2 -m SimpleHTTPServer'" >> ${file}
 
 # Update/upgrade kali
-alias doit ='apt-get update && apt-get dist-upgrade -y && msfupdate && nmap --script-updatedb
+echo -e "\n# Alias for system upgrade" >> ${file}
+echo -e "alias doit='apt-get update && apt-get dist-upgrade -y && msfupdate && nmap --script-updatedb'" >> ${file}
+
+# Activate changes
+source "${file}" || source ~/.zshrc
 
 ##### Clean the system
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) ${GREEN}Cleaning${RESET} the system"
