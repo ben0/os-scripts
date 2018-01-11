@@ -3648,7 +3648,7 @@ git pull -q
 
 ##### Dependancies for hydra
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}hydra deps${RESET} (APT)"
-apt -y -qq install libssl-dev libgcrypt-dev libidb2-0-dev libcurses-ocmal-dev libpcre2-dev libpq-dev default-mysqlclient-dev libssh2-1-dev \
+apt -y -qq install libssh-dev libssl-dev libgcrypt-dev libidb2-0-dev libcurses-ocmal-dev libpcre2-dev libpq-dev default-mysqlclient-dev libssh2-1-dev \
   || echo -e ' '${RED}'[!] Issue with apt install'${RESET} 1>&2
 
 ##### Install THC Hydra - DEVEL (GIT)
@@ -3661,9 +3661,9 @@ pushd /opt/hydra-git/ >/dev/null
 git pull -q
 make -s clean
 ./configure --prefix=/usr --sysconfdir=/etc >/dev/null
-make -s 2>/dev/null && make -s install   # bad, but it gives errors which might be confusing (still builds)
+make -s 2>/dev/null && make -s install
 popd >/dev/null
-#--- Add to path (with a 'better' name)
+#--- Add to path
 mkdir -p /usr/local/bin/
 ln -sf /usr/bin/hydra /usr/local/bin/hydra
 
