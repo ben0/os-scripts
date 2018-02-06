@@ -3648,7 +3648,7 @@ git pull -q
 
 ##### Dependancies for hydra
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}hydra deps${RESET} (APT)"
-apt -y -qq install libssh-dev libssl-dev libgcrypt-dev libidb2-0-dev libcurses-ocmal-dev libpcre2-dev libpq-dev default-mysqlclient-dev libssh2-1-dev \
+apt -y -qq install libssh-dev libssl-dev libgcrypt-dev libidb2-0-dev libcurses-ocaml-dev libpcre2-dev libpq-dev default-mysqlclient-dev libssh2-1-dev \
   || echo -e ' '${RED}'[!] Issue with apt install'${RESET} 1>&2
 
 ##### Install THC Hydra - DEVEL (GIT)
