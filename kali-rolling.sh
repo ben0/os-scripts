@@ -3646,6 +3646,11 @@ git clone -q -b master https://github.com/longld/peda.git ~/peda \
 echo "source ~/peda/peda.py" >> ~/.gdbinit
 git pull -q
 
+##### Install CrackMapExec
+(( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}CrackMapExec${RESET} (APT)"
+apt -y -qq install crackmapexec \
+  || echo -e ' '${RED}'[!] Issue with apt install'${RESET} 1>&2
+
 ##### Dependancies for hydra
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}hydra deps${RESET} (APT)"
 apt -y -qq install libssh-dev libssl-dev libgcrypt-dev libidb2-0-dev libcurses-ocaml-dev libpcre2-dev libpq-dev default-libmysqlclient-dev libssh2-1-dev \
@@ -3669,6 +3674,8 @@ ln -sf /usr/bin/hydra /usr/local/bin/hydra
 
 ##### Install Core Impact Impacket
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}Impacket${RESET} (GIT)"
+apt -y -qq install git \
+  || echo -e ' '${RED}'[!] Issue with apt install'${RESET} 1>&2
 git clone -q -b master https://github.com/CoreSecurity/impacket /opt/impacket-git/ \
   || echo -e ' '${RED}'[!] Issue when git cloning'${RESET} 1>&2
 pushd /opt/impacket-git/ >/dev/null
