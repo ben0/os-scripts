@@ -3667,6 +3667,15 @@ popd >/dev/null
 mkdir -p /usr/local/bin/
 ln -sf /usr/bin/hydra /usr/local/bin/hydra
 
+##### Install Core Impact Impacket
+(( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}Impacket${RESET} (GIT)"
+git clone -q -b master https://github.com/CoreSecurity/impacket /opt/impacket-git/ \
+  || echo -e ' '${RED}'[!] Issue when git cloning'${RESET} 1>&2
+pushd /opt/impacket-git/ >/dev/null
+git pull -q
+pip install .
+popd >/dev/null
+
 ##### Install xclip 
 (( STAGE++ )); echo -e "\n\n ${GREEN}[+]${RESET} (${STAGE}/${TOTAL}) Installing ${GREEN}XClip${RESET}"
 apt -y -qq install xclip \
