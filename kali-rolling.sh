@@ -3703,6 +3703,7 @@ echo -e "alias phpweb='php -S 0.0.0.0:8000'" >> ${file}
 # XClip paste with 'v'
 echo -e "\n# Alias for XClip paste" >> ${file}
 echo -e "alias v='xclip -o'" >> ${file}
+echo -e "alias c='xclip -selection c'" >> ${file}
 
 # Print punctuation chars
 echo -e "\n# Alias for python stuff" >> ${file}
